@@ -3,9 +3,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Badge from '../common/Badge';
 import Button from '../common/Button';
-import { useFavorites } from '../../hooks/useFavorites';
+
 import { Heart, Clock, Users } from 'lucide-react';
 import type { Meal } from '../../types/recipe.types';
+import { useRecipeContext } from '../../context/useRecipeContext';
 
 interface RecipeCardProps extends React.HTMLAttributes<HTMLDivElement> {
   meal: Meal;
@@ -19,12 +20,14 @@ const RecipeCard: React.FC<RecipeCardProps> = ({
   compact = false, 
   showFavorite = true 
 }) => {
-  const { isFavorite, toggleFavorite } = useFavorites();
+
+const { isFavorite, toggleFavorite } = useRecipeContext();
   const favorite = isFavorite(meal.idMeal);
 
   const handleFavoriteClick = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
+    console.log(meal.idMeal)
     toggleFavorite(meal.idMeal);
   };
 

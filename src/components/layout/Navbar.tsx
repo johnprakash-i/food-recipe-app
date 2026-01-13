@@ -2,13 +2,14 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Button from '../common/Button';
-import { useFavorites } from '../../hooks/useFavorites';
+
 import { Heart, Home, Search } from 'lucide-react';
+import { useRecipeContext } from '../../context/useRecipeContext';
 
 const Navbar: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { favorites } = useFavorites();
+  const { favorites } = useRecipeContext();
 
   const isActive = (path: string) => location.pathname === path;
 
