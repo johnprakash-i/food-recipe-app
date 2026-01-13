@@ -3,6 +3,7 @@
 export interface Meal {
   idMeal: string;
   strMeal: string;
+    strSource: string | null;
   strDrinkAlternate: string | null;
   strCategory: string;
   strArea: string;
