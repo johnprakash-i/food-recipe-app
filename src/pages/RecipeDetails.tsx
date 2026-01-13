@@ -5,16 +5,17 @@ import Container from '../components/layout/Container';
 import Button from '../components/common/Button';
 import Badge from '../components/common/Badge';
 import Loader from '../components/common/Loader';
-import { useFavorites } from '../hooks/useFavorites';
+
 import { mealsApi } from '../api/mealsApi';
 import { parseIngredients, parseTags, getYouTubeId, formatInstructions } from '../utils/helpers';
 import type { Meal } from '../types/recipe.types';
 import { ArrowLeft, Heart, Clock, Users, Globe, Youtube, BookOpen, ChefHat, Share2 } from 'lucide-react';
+import { useRecipeContext } from '../context/useRecipeContext';
 
 const RecipeDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { isFavorite, toggleFavorite } = useFavorites();
+  const { isFavorite, toggleFavorite } = useRecipeContext();
   
   const [meal, setMeal] = useState<Meal | null>(null);
   const [isLoading, setIsLoading] = useState(true);

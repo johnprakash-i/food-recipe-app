@@ -4,14 +4,14 @@ import { useNavigate } from "react-router-dom";
 import Container from "../components/layout/Container";
 import RecipeGrid from "../components/recipe/RecipeGrid";
 import Button from "../components/common/Button";
-import { useFavorites } from "../hooks/useFavorites";
+
 
 import { Heart, ArrowLeft, ChefHat } from "lucide-react";
 import { useRecipeContext } from "../context/useRecipeContext";
 
 const Favorites: React.FC = () => {
   const navigate = useNavigate();
-  const { favorites,clearFavorites } = useFavorites();
+  const { favorites,clearFavorites } = useRecipeContext();
   const { meals } = useRecipeContext();
 
   // Get favorite meal details from the meals list
