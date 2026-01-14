@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Container from "../components/layout/Container";
 import RecipeGrid from "../components/recipe/RecipeGrid";
 import Button from "../components/common/Button";
-import { Heart, ArrowLeft, ChefHat } from "lucide-react";
+import { Heart, ArrowLeft } from "lucide-react";
 import { useRecipeContext } from "../context/useRecipeContext";
 import type { Meal } from "../types/recipe.types";
 
@@ -11,7 +11,7 @@ const Favorites: React.FC = () => {
   const navigate = useNavigate();
   const { favorites, clearFavorites } = useRecipeContext();
   const [favoriteMeals, setFavoriteMeals] = useState<Meal[]>([]);
-  const [loading, setLoading] = useState(false);
+ 
 
   useEffect(() => {
     if (favorites.length === 0) {
@@ -20,7 +20,7 @@ const Favorites: React.FC = () => {
     }
 
     const fetchFavorites = async () => {
-      setLoading(true);
+      
       try {
         const results = await Promise.all(
           favorites.map(async (id) => {
@@ -35,9 +35,7 @@ const Favorites: React.FC = () => {
         setFavoriteMeals(results.filter(Boolean));
       } catch (err) {
         console.error("Failed to fetch favorite meals", err);
-      } finally {
-        setLoading(false);
-      }
+      } 
     };
 
     fetchFavorites();
